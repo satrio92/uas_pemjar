@@ -12,21 +12,56 @@
 	<div class="flex flex-col justify-center items-center h-[calc(100%-120px)] gap-16">
 		<div class="flex gap-4">
 			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
-				<input type="text" maxlength="1" class="outline-none max-w-[32px] text-3xl">
+				<input type="text" maxlength="1" autofocus class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
 			</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">U</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">L</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">I</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">S</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">A</div>
-			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">N</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
+			<div class="w-16 h-16 border-2 rounded-md border-gray-600 flex justify-center items-center text-3xl font-semibold hover:w-[68px] hover:h-[68px] hover:text-[34px] hover:shadow-md cursor-pointer transition-all duration-300 ease-in-out box">
+				<input type="text" maxlength="1" class="input outline-none max-w-[32px] text-3xl text-center" onkeyup="nextCol()">
+			</div>
 		</div>
 		<div class="w-[600px] text-center font-medium">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Deserunt dolor quasi necessitatibus beatae, perferendis soluta, ea at reiciendis aliquam earum provident eius, saepe deleniti similique adipisci ad qui consequuntur eos.</div>
 	</div>
 
 	<script>
-		let kata = []
+		document.querySelector(".input").focus()
+		let i = 0
+		const jawaban = ['T', 'U', 'L', 'I', 'S', 'A', 'N']
+
+		function checkJawaban() {
+			let inp  = document.querySelectorAll(".input")
+			for (let i = 0; i < inp.length; i++) {
+				if (inp[i].value != jawaban[i]) {
+					return alert('Jawaban Salah')
+				}	
+			}
+			alert('Jawaban Benar')
+		}
 		
+		function nextCol() {
+			let input  = document.querySelectorAll(".input")
+			if (i == 6) {
+				checkJawaban()
+				// alert('oitttt')
+			} else if (input[i].value.length == 1) {
+				input[i].blur()
+				input[i+1].focus()
+				i++
+			}
+		}
 	</script>
 </body>
 </html>
