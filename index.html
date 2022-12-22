@@ -37,8 +37,54 @@
 	</div>
 
 	<script>
+		const socket = new WebSocket('ws://localhost:8005');
+		// window.addEventListener('load', () => {
+		// 	socket.addEventListener('open', (event) => {
+		// 		console.log(event)
+		// 		socket.send('play');
+		// 	});
+
+		// 	socket.addEventListener('message', (event) => {
+		// 		console.log('Message from server ', event.data);
+		// 	});
+
+		// 	socket.addEventListener('error', (event) => {
+		// 		console.log('Conn Error', event);
+		// 	});
+
+		// 	socket.addEventListener('close', (event) => {
+		// 		console.log('Connection close', event);
+		// 	});
+		// })
+
+		// socket.onopen = function () {
+		// 	// socket.send({'type': 'play'}); // this works
+		// 	alert("Connection opened...");
+		// };
+		
+		
+		socket.addEventListener('message', (event) => {
+			console.log(event.data);
+		});
+		
+		const msg = JSON.parse('{"type": "play"}')
+
+		socket.addEventListener('open', (event) => {
+			console.log(event)
+			socket.send(msg)
+		})
+		
+		// console.log(msg)
+		// socket.onopen = () => socket.send(msg); // this works
+		
+		socket.addEventListener('message', (event) => {
+			console.log(event.data);
+		});
+
+		
 		document.querySelector(".input").focus()
 		let i = 0
+		const alphabet = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z']
 		const jawaban = ['T', 'U', 'L', 'I', 'S', 'A', 'N']
 
 		function checkJawaban() {
@@ -52,14 +98,16 @@
 		}
 		
 		function nextCol() {
-			let input  = document.querySelectorAll(".input")
-			if (i == 6) {
-				checkJawaban()
-				// alert('oitttt')
-			} else if (input[i].value.length == 1) {
-				input[i].blur()
-				input[i+1].focus()
-				i++
+			let keynum = event.key
+			if(alphabet.includes(keynum)) {
+				let input  = document.querySelectorAll(".input")
+				if (i == (jawaban.length-1)) {
+					checkJawaban()
+				} else if (input[i].value.length == 1) {
+					input[i].blur()
+					input[i+1].focus()
+					i++
+				}
 			}
 		}
 	</script>
